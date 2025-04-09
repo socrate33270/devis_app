@@ -65,6 +65,5 @@ Rails.application.configure do
 # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
  # Désactive les avertissements et protections spécifiques
- config.active_record.sqlite3_production_warning = false
  Rails.application.config.hosts << /.*.onrender.com/
 end
