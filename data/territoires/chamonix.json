@@ -1,0 +1,46 @@
+{
+    "nom": "Chamonix Mont-Blanc",
+    "region": "Auvergne-Rhône-Alpes",
+    "description": "Capitale mondiale de l'alpinisme au pied du Mont Blanc",
+    "attractions": [
+      {
+        "nom": "Aiguille du Midi",
+        "description": "Téléphérique montant à 3842m avec vue panoramique",
+        "prix": 65
+      },
+      {
+        "nom": "Mer de Glace",
+        "description": "Le plus grand glacier de France accessible par train",
+        "prix": 35
+      },
+      {
+        "nom": "Parc de Loisirs de Chamonix",
+        "description": "Activités familiales avec vue sur les montagnes",
+        "prix": 25
+      }
+    ],
+    "hebergements": [
+      {
+        "nom": "Hôtel Mont-Blanc",
+        "description": "Établissement 5 étoiles avec spa face au massif",
+        "prix_min": 290
+      },
+      {
+        "nom": "Chalet Les Flocons",
+        "description": "Chalet authentique pour 8 personnes avec sauna",
+        "prix_min": 420
+      }
+    ],
+    "evenements": [
+      {
+        "nom": "Ultra-Trail du Mont-Blanc",
+        "date": "28/08/2025",
+        "description": "Course mythique autour du Mont-Blanc"
+      },
+      {
+        "nom": "Climbing World Cup",
+        "date": "15/07/2025",
+        "description": "Compétition internationale d'escalade"
+      }
+    ]
+  }

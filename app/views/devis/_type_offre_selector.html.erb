@@ -1,0 +1,10 @@
+<div class="type-offre-selector" style="margin: 20px 0; padding: 10px; background: #f0f8ff; border-radius: 5px;">
+  <form action="<%= set_type_offre_devis_path(@devis) %>" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <label for="type_offre">Type d'offre: </label>
+    <select name="type_offre" onchange="this.form.submit()">
+      <option value="groupes" <%= session[:type_offre] == 'groupes' ? 'selected' : '' %>>Groupes & Loisirs</option>
+      <option value="affaires" <%= session[:type_offre] == 'affaires' ? 'selected' : '' %>>Affaires & Séminaires</option>
+    </select>
+  </form>
+</div>

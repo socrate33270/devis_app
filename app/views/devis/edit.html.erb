@@ -1,0 +1,16 @@
+<% content_for :title, "Editing devis" %>
+
+<h1>Editing devis</h1>
+
+<%= render "form", devis: @devis %>
+
+<br>
+
+<div>
+<%= link_to "Voir ce devis", @devis %> |
+<% if @devis.client.present? %>
+  <%= link_to "Retour au client", client_path(@devis.client) %>
+<% else %>
+  <%= link_to "Retour à l'accueil", root_path %>
+<% end %>
+</div>

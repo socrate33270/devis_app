@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="header">
+    <h1>Offre pour <%= @devis.titre %></h1>
+    <p class="date">Généré le <%= Time.now.strftime("%d/%m/%Y") %></p>
+  </div>
+
+  <% if @devis.client %>
+    <div class="client-info">
+      <h2>Client</h2>
+      <p><strong>Nom:</strong> <%= @devis.client.full_name %></p>
+      <% if @devis.client.company_name.present? %>
+        <p><strong>Entreprise:</strong> <%= @devis.client.company_name %></p>
+      <% end %>
+      <% if @devis.client.email.present? %>
+        <p><strong>Email:</strong> <%= @devis.client.email %></p>
+      <% end %>
+      <% if @devis.client.phone.present? %>
+        <p><strong>Téléphone:</strong> <%= @devis.client.phone %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="devis-details">
+    <h2>Détails du devis</h2>
+    <p><strong>Titre:</strong> <%= @devis.titre %></p>
+    <p><strong>Description:</strong> <%= @devis.description %></p>
+    <p><strong>Statut:</strong> <%= @devis.statut %></p>
+  </div>
+
+  <div class="offer-content">
+    <h2>Notre offre</h2>
+    <%= simple_format(@offre) %>
+  </div>
+
+  <div class="footer">
+    <p>Pour toute question, n'hésitez pas à nous contacter.</p>
+  </div>
+</div>

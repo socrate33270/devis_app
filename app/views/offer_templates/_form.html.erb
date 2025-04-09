@@ -1,0 +1,62 @@
+<%= form_with(model: offer_template) do |form| %>
+    <% if offer_template.errors.any? %>
+      <div class="alert alert-danger">
+        <h4><%= pluralize(offer_template.errors.count, "erreur") %> ont empêché la sauvegarde de ce template :</h4>
+        <ul>
+          <% offer_template.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div class="mb-3">
+      <%= form.label :name, "Nom du template", class: "form-label" %>
+      <%= form.text_field :name, class: "form-control", placeholder: "Ex: Forfait Chambre Double" %>
+      <div class="form-text">Donnez un nom clair à votre template pour le retrouver facilement</div>
+    </div>
+  
+    <div class="mb-3">
+      <%= form.label :category, "Catégorie", class: "form-label" %>
+      <%= form.select :category, OfferTemplate::CATEGORIES.map { |c| [c.capitalize, c] }, 
+                     { include_blank: "Choisir une catégorie" }, 
+                     { class: "form-select" } %>
+      <div class="form-text">Sélectionnez la catégorie qui correspond à votre offre</div>
+    </div>
+  
+    <div class="mb-3">
+      <%= form.label :location, "Localisation", class: "form-label" %>
+      <%= form.text_field :location, class: "form-control", placeholder: "Ex: Bordeaux" %>
+      <div class="form-text">Ville ou région où l'offre est disponible</div>
+    </div>
+  
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <%= form.label :capacity_min, "Capacité minimum", class: "form-label" %>
+        <%= form.number_field :capacity_min, class: "form-control", min: 1 %>
+        <div class="form-text">Nombre minimum de personnes</div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <%= form.label :capacity_max, "Capacité maximum", class: "form-label" %>
+        <%= form.number_field :capacity_max, class: "form-control", min: 1 %>
+        <div class="form-text">Nombre maximum de personnes</div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <%= form.label :base_price, "Prix de base", class: "form-label" %>
+        <%= form.number_field :base_price, class: "form-control", step: 0.01, min: 0 %>
+        <div class="form-text">Prix de base en euros</div>
+      </div>
+    </div>
+  
+    <div class="mb-3">
+      <%= form.label :content, "Contenu du template", class: "form-label" %>
+      <%= form.text_area :content, rows: 10, class: "form-control", 
+                        placeholder: "Décrivez votre offre en détail. Ce texte sera utilisé par l'IA lors de la génération des offres." %>
+      <div class="form-text">Décrivez votre offre de manière complète avec tous les détails importants</div>
+    </div>
+  
+    <div class="mb-4">
+      <%= form.submit "Enregistrer le template", class: "btn btn-primary" %>
+      <%= link_to "Annuler", offer_templates_path, class: "btn btn-secondary ms-2" %>
+    </div>
+  <% end %>

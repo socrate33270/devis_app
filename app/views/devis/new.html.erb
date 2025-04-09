@@ -1,0 +1,9 @@
+<div class="container mt-4">
+  <h1>Nouveau devis pour <%= @client.full_name_with_company %></h1>
+  
+  <div class="alert alert-info mb-4">
+    <p>Remplissez les informations du devis ci-dessous. Après avoir créé le devis, vous pourrez générer une offre automatique avec l'IA depuis la page du devis.</p>
+  </div>
+  
+  <%= render 'form', devis: @devis %>
+</div>

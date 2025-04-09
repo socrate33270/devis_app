@@ -1,0 +1,89 @@
+{
+    "nom": "Bordeaux",
+    "region": "Nouvelle-Aquitaine",
+    "description": "Capitale mondiale du vin et ville classée UNESCO",
+    "offres": {
+      "groupes": [
+        {
+          "nom": "Découverte des Vignobles",
+          "description": "Circuit de 3 châteaux avec dégustation et repas traditionnel",
+          "prix_par_personne": 85,
+          "capacite_min": 10,
+          "capacite_max": 50,
+          "avantages": ["Guide francophone", "Transport inclus", "Repas du terroir"]
+        },
+        {
+          "nom": "Bordeaux City Pass Groupes",
+          "description": "Accès à 20 musées et transports illimités pendant 48h",
+          "prix_par_personne": 45,
+          "capacite_min": 5,
+          "capacite_max": 100,
+          "avantages": ["Coupe-file", "Livret de visite", "Application mobile"]
+        },
+        {
+          "nom": "Croisière sur la Garonne",
+          "description": "2h de navigation avec dégustation de vins et view sur les quais",
+          "prix_par_personne": 38,
+          "capacite_min": 15,
+          "capacite_max": 80,
+          "avantages": ["Vue panoramique", "Animation à bord", "Dégustation de 3 vins"]
+        }
+      ],
+      "affaires": [
+        {
+          "nom": "Séminaire Prestige au Château",
+          "description": "Journée de travail dans un Grand Cru Classé avec activités oenologiques",
+          "prix_par_personne": 290,
+          "capacite_min": 10,
+          "capacite_max": 40,
+          "equipements": ["Salle équipée", "Wifi haut débit", "Vidéoprojecteur"],
+          "services": ["Restauration gastronomique", "Team building œnologique", "Transferts VIP"]
+        },
+        {
+          "nom": "Convention d'Affaires Cité du Vin",
+          "description": "Espace privatisé avec vue panoramique pour vos réunions d'entreprise",
+          "prix_par_personne": 180,
+          "capacite_min": 30,
+          "capacite_max": 200,
+          "equipements": ["Scène modulable", "Sonorisation professionnelle", "Régie technique"],
+          "services": ["Traiteur sur mesure", "Visite privée", "Photographe"]
+        }
+      ]
+    },
+    "hebergements": {
+      "groupes": [
+        {
+          "nom": "Hôtel Ibis Bordeaux Centre",
+          "description": "Établissement 3 étoiles à proximité des transports",
+          "prix_par_personne": 65,
+          "capacite_min": 10,
+          "capacite_max": 100
+        },
+        {
+          "nom": "Auberge de Jeunesse Bordeaux",
+          "description": "Logement économique avec espaces communs",
+          "prix_par_personne": 29,
+          "capacite_min": 8,
+          "capacite_max": 80
+        }
+      ],
+      "affaires": [
+        {
+          "nom": "InterContinental Bordeaux",
+          "description": "Palace 5 étoiles avec service conciergerie",
+          "prix_par_personne": 220,
+          "capacite_min": 1,
+          "capacite_max": 150,
+          "services": ["Room service 24h/24", "Business center", "Spa"]
+        },
+        {
+          "nom": "Pullman Bordeaux Lac",
+          "description": "Hôtel d'affaires avec centre de congrès intégré",
+          "prix_par_personne": 160,
+          "capacite_min": 5,
+          "capacite_max": 300,
+          "services": ["12 salles de réunion", "Restaurant gastronomique", "Navette aéroport"]
+        }
+      ]
+    }
+  }

@@ -1,0 +1,19 @@
+<div class="client-info">
+  <% if @devis.client %>
+    <h3>Client: <%= @devis.client.full_name_with_company %></h3>
+    <% if @devis.client.email.present? %>
+      <p><strong>Email:</strong> <%= @devis.client.email %></p>
+    <% end %>
+    <% if @devis.client.phone.present? %>
+      <p><strong>Téléphone:</strong> <%= @devis.client.phone %></p>
+    <% end %>
+  <% end %>
+  <p><strong>Référence du devis:</strong> <%= @devis.id %></p>
+  <p><strong>Date:</strong> <%= Date.today.strftime('%d/%m/%Y') %></p>
+</div>
+
+<h2><%= @devis.titre %></h2>
+
+<div class="offer-content">
+  <%= simple_format(@offre) %>
+</div>

@@ -1,0 +1,69 @@
+<%= form_with(model: @devis.new_record? && @client.present? ? [@client, @devis] : @devis, local: true) do |form| %>
+  <% if devis.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(devis.errors.count, "erreur") %> :</h4>
+      <ul>
+        <% devis.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group mb-3">
+    <%= form.label :titre %>
+    <%= form.text_field :titre, class: "form-control" %>
+  </div>
+
+  <div class="form-group mb-3">
+    <%= form.label :description %>
+    <%= form.text_area :description, rows: 5, class: "form-control",
+        placeholder: "Décrivez l'événement, le nombre de personnes, les dates, les besoins spécifiques..." %>
+  </div>
+
+  <div class="form-group mb-3">
+    <%= form.label :statut %>
+    <%= form.select :statut, ['Brouillon', 'En attente', 'Accepté', 'Refusé'], {}, class: "form-control" %>
+  </div>
+
+  <!-- Configuration supplémentaire pour l'IA -->
+  <div class="card mb-3">
+    <div class="card-header">
+      <h5>Options pour la génération par IA</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <label for="devis_territoire_id">Territoire</label>
+          <select name="devis[territoire_id]" id="devis_territoire_id" class="form-control">
+            <option value="">Sélectionnez un territoire</option>
+            <option value="bordeaux">Bordeaux (Nouvelle-Aquitaine)</option>
+            <option value="chamonix">Chamonix Mont-Blanc (Auvergne-Rhône-Alpes)</option>
+            <option value="limoges">Limoges (Nouvelle-Aquitaine)</option>
+          </select>
+          <small class="form-text text-muted">La ville où se déroulera l'événement</small>
+        </div>
+        <div class="col-md-6">
+          <label for="devis_type_offre">Type d'événement</label>
+          <select name="devis[type_offre]" id="devis_type_offre" class="form-control">
+            <option value="">Sélectionnez un type</option>
+            <option value="groupes">Groupe (Visites touristiques, Excursions)</option>
+            <option value="affaires">Affaire (Séminaires, Conventions)</option>
+          </select>
+          <small class="form-text text-muted">Le type d'événement détermine les offres proposées</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group d-flex justify-content-between">
+    <%= form.submit "Enregistrer sans IA", class: "btn btn-primary" %>
+    <%= form.button "Générer avec l'IA", name: "generate_with_ai", value: "true", class: "btn btn-success" %>
+    
+    <% if @client.present? %>
+      <%= link_to "Annuler", client_path(@client), class: "btn btn-secondary" %>
+    <% else %>
+      <%= link_to "Annuler", @devis.persisted? ? devis_path(@devis) : root_path, class: "btn btn-secondary" %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,60 @@
+<div class="container mt-4">
+  <p style="color: green"><%= notice %></p>
+  <h1><%= @client.full_name_with_company %></h1>
+  <div class="card mb-4">
+    <div class="card-header">
+      <h5>Informations client</h5>
+    </div>
+    <div class="card-body">
+      <p><strong>Email:</strong> <%= @client.email.present? ? @client.email : "Non renseigné" %></p>
+      <p><strong>Téléphone:</strong> <%= @client.phone.present? ? @client.phone : "Non renseigné" %></p>
+      <p><strong>Statut:</strong> <%= @client.status.present? ? @client.status.capitalize : "Prospect" %></p>
+      <% if @client.notes.present? %>
+        <p><strong>Notes:</strong> <%= @client.notes %></p>
+      <% end %>
+    </div>
+    <div class="card-footer">
+      <%= link_to "Modifier", edit_client_path(@client), class: "btn btn-sm btn-primary" %>
+      <%= link_to "Retour à la liste", clients_path, class: "btn btn-sm btn-secondary" %>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h5>Devis de ce client</h5>
+      <%= link_to "Créer un nouveau devis", new_client_devis_path(@client), class: "btn btn-success" %>
+    </div>
+    <div class="card-body">
+      <% if @devis.any? %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Titre</th>
+              <th>Date</th>
+              <th>Statut</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @devis.each do |devis| %>
+              <tr>
+                <td><%= devis.titre %></td>
+                <td><%= devis.created_at.strftime("%d/%m/%Y") %></td>
+                <td><%= devis.statut %></td>
+                <td>
+                  <%= link_to "Voir", "/devis/#{devis.id}", class: "btn btn-sm btn-info" %>
+                  <%= link_to "Générer offre", generate_offer_devis_path(devis), class: "btn btn-sm btn-primary" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p class="text-center">Aucun devis pour ce client</p>
+      <% end %>
+    </div>
+  </div>
+  <!-- Ajoutez le bouton de suppression ici, après les deux cartes -->
+  <div class="mt-4">
+    <%= button_to "Supprimer ce client", client_path(@client), method: :delete, data: { turbo_confirm: "Êtes-vous sûr ? Cette action supprimera également tous les devis associés." }, class: "btn btn-danger" %>
+  </div>
+</div>

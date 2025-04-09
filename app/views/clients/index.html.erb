@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1>Clients et Prospects</h1>
+  <%= link_to "Nouveau client", new_client_path, class: "btn btn-success" %>
+</div>
+<% if @clients.any? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Entreprise</th>
+        <th>Email</th>
+        <th>Téléphone</th>
+        <th>Statut</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @clients.each do |client| %>
+        <tr>
+          <td><%= link_to client.full_name, client %></td>
+          <td><%= client.company_name %></td>
+          <td><%= client.email %></td>
+          <td><%= client.phone %></td>
+          <td><%= client.status %></td>
+          <td>
+            <%= link_to "Voir", client, class: "btn btn-sm btn-info" %>
+            <%= link_to "Modifier", edit_client_path(client), class: "btn btn-sm btn-warning" %>
+            <%= link_to "Nouveau devis", new_client_devis_path(client), class: "btn btn-sm btn-primary" %>
+           <%= button_to "Supprimer", client_path(client), method: :delete, data: { turbo_confirm: "Êtes-vous sûr ? Cette action supprimera également tous les devis associés." }, class: "btn btn-sm btn-danger" %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alert alert-info">
+    Vous n'avez pas encore de clients. <%= link_to "Créez votre premier client", new_client_path %>.
+  </div>
+<% end %>

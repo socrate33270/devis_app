@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  devis: one
+  content: MyText
+  original_content: MyText
+  edited: false
+
+two:
+  devis: two
+  content: MyText
+  original_content: MyText
+  edited: false

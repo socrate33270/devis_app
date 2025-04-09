@@ -1,0 +1,77 @@
+<div class="container mt-4">
+  <div class="mb-4">
+    <%= link_to "← Retour au template", email_template_path(@email_template), class: "btn btn-outline-secondary" %>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2 class="h3 mb-0">Prévisualisation de l'email: <%= @email_template.name %></h2>
+    </div>
+    
+    <div class="card-body">
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5 class="mb-0">Objet de l'email</h5>
+        </div>
+        <div class="card-body bg-light">
+          <%= @preview_subject %>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header">
+          <h5 class="mb-0">Corps de l'email</h5>
+        </div>
+        <div class="card-body bg-light email-preview">
+          <%= simple_format @preview_content %>
+        </div>
+      </div>
+      
+      <div class="alert alert-info mt-4">
+        <p class="mb-0"><strong>Note:</strong> Ceci est une prévisualisation avec des données d'exemple. 
+        Les variables seront remplacées par les vraies informations lors de l'utilisation.</p>
+      </div>
+    </div>
+    
+    <div class="card-footer">
+      <button id="copyPreviewBtn" class="btn btn-success" onclick="copyPreviewToClipboard()">
+        Copier dans le presse-papier
+      </button>
+      <%= link_to "Modifier le template", edit_email_template_path(@email_template), class: "btn btn-primary float-end" %>
+    </div>
+  </div>
+</div>
+
+<script>
+  function copyPreviewToClipboard() {
+    // Préparer le contenu à copier (objet + contenu)
+    const emailContent = "Objet: <%= j @preview_subject %>\n\n<%= j @preview_content %>";
+    
+    // Copier dans le presse-papier
+    navigator.clipboard.writeText(emailContent).then(function() {
+      // Changer temporairement le texte du bouton pour indiquer le succès
+      const button = document.getElementById('copyPreviewBtn');
+      const originalText = button.textContent;
+      button.textContent = "✓ Copié !";
+      button.classList.remove('btn-success');
+      button.classList.add('btn-outline-success');
+      
+      // Revenir au texte original après 2 secondes
+      setTimeout(function() {
+        button.textContent = originalText;
+        button.classList.remove('btn-outline-success');
+        button.classList.add('btn-success');
+      }, 2000);
+    }).catch(function(err) {
+      alert("Erreur lors de la copie dans le presse-papier: " + err);
+    });
+  }
+</script>
+
+<style>
+  .email-preview {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    max-width: 650px;
+  }
+</style>

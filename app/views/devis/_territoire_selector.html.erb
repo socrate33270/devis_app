@@ -1,0 +1,10 @@
+<div class="territoire-selector" style="margin: 20px 0; padding: 10px; background: #f5f5f5; border-radius: 5px;">
+  <form action="<%= set_territoire_devis_path(@devis) %>" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <label for="territoire_id">Choisir un territoire pour la démo: </label>
+    <select name="territoire_id" onchange="this.form.submit()">
+      <option value="bordeaux" <%= session[:territoire_id] == 'bordeaux' ? 'selected' : '' %>>Bordeaux</option>
+      <option value="chamonix" <%= session[:territoire_id] == 'chamonix' ? 'selected' : '' %>>Chamonix</option>
+    </select>
+  </form>
+</div>

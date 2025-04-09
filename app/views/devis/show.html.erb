@@ -1,0 +1,61 @@
+<p style="color: green"><%= notice %></p>
+<%= render @devis %>
+<% if @devis.client %>
+<div class="client-info mt-3 p-3 bg-light rounded">
+<h3>Client</h3>
+<p><strong>Nom:</strong> <%= link_to @devis.client.full_name, @devis.client %></p>
+<% if @devis.client.company_name.present? %>
+ <p><strong>Entreprise:</strong> <%= @devis.client.company_name %></p>
+<% end %>
+ </div>
+<% end %>
+<% if @devis.offers.any? %>
+<div class="offers-section mt-4">
+<h3>Offres générées (<%= @devis.offers.count %>)</h3>
+<div class="list-group">
+<% @devis.offers.order(created_at: :desc).each do |offer| %>
+ <div class="list-group-item">
+<div class="d-flex justify-content-between align-items-center">
+<h5 class="mb-1">Offre du <%= offer.created_at.strftime("%d/%m/%Y à %H:%M") %></h5>
+<span class="badge <%= offer.edited? ? 'bg-warning' : 'bg-success' %>">
+<%= offer.edited? ? 'Modifiée' : 'Original' %>
+ </span>
+</div>
+<p class="mb-1"><%= truncate(offer.content, length: 150) %></p>
+<div class="mt-2">
+<%= link_to "Voir l'offre complète", show_original_offer_devis_path(@devis, offer_id: offer.id), class: "btn btn-sm btn-primary" %>
+ <%= link_to "Télécharger en PDF", download_offer_pdf_devis_path(@devis, offer_id: offer.id, format: :pdf), class: "btn btn-sm btn-info", target: "_blank" %>
+<% if offer.edited? %>
+ <%= link_to "Voir l'original", show_original_offer_devis_path(@devis, offer_id: offer.id, original: true), class: "btn btn-sm btn-outline-secondary" %>
+<% end %>
+ </div>
+</div>
+<% end %>
+ </div>
+</div>
+<% end %>
+
+<!-- Ajout de la section des templates d'emails -->
+<div class="mt-4">
+  <h4>Emails</h4>
+  <div class="dropdown">
+    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="emailTemplatesDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+      Sélectionner un template d'email
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="emailTemplatesDropdown">
+      <% current_user.email_templates.order(:name).each do |template| %>
+        <%= link_to template.name, preview_email_template_path(template), class: "dropdown-item" %>
+      <% end %>
+      <div class="dropdown-divider"></div>
+      <%= link_to "Gérer mes templates d'emails", email_templates_path, class: "dropdown-item" %>
+    </ul>
+  </div>
+</div>
+<!-- Fin de l'ajout -->
+
+<div class="mt-4">
+<%= link_to "Générer une offre avec l'IA", generate_offer_devis_path(@devis), class: "btn btn-success" %>
+ <%= link_to "Modifier ce devis", edit_devis_path(@devis), class: "btn btn-warning" %> |
+<%= link_to "Retour au client", client_path(@devis.client), class: "btn btn-secondary" %>
+ <%= button_to "Supprimer ce devis", @devis, method: :delete, class: "btn btn-danger", form: { data: { turbo_confirm: "Êtes-vous sûr de vouloir supprimer ce devis?" } } %>
+</div>

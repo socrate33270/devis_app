@@ -1,0 +1,48 @@
+<div class="container mt-4">
+  <div class="mb-4">
+    <%= link_to "← Retour à la liste", offer_templates_path, class: "btn btn-outline-secondary" %>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="d-flex justify-content-between align-items-center">
+        <h1 class="h3 mb-0"><%= @offer_template.name %></h1>
+        <span class="badge bg-<%= @offer_template.category == 'hotel' ? 'primary' : 
+                              @offer_template.category == 'restaurant' ? 'success' : 
+                              @offer_template.category == 'salle' ? 'warning' : 'info' %>">
+          <%= @offer_template.category.capitalize %>
+        </span>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="row mb-4">
+        <div class="col-md-4">
+          <h6>Localisation</h6>
+          <p><%= @offer_template.location || "Non spécifiée" %></p>
+        </div>
+        <div class="col-md-4">
+          <h6>Capacité</h6>
+          <p><%= @offer_template.capacity_min %> - <%= @offer_template.capacity_max %> personnes</p>
+        </div>
+        <div class="col-md-4">
+          <h6>Prix de base</h6>
+          <p><%= number_to_currency(@offer_template.base_price, unit: "€") %></p>
+        </div>
+      </div>
+      
+      <h5 class="mb-3">Contenu du template</h5>
+      <div class="p-3 bg-light rounded">
+        <%= simple_format @offer_template.content %>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="d-flex justify-content-end">
+        <%= link_to "Modifier", edit_offer_template_path(@offer_template), class: "btn btn-primary me-2" %>
+        <%= button_to "Supprimer", offer_template_path(@offer_template), 
+                    method: :delete, 
+                    form: { data: { turbo_confirm: "Êtes-vous sûr de vouloir supprimer ce template ?" } }, 
+                    class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>

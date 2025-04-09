@@ -1,0 +1,59 @@
+<%= form_with(model: email_template) do |form| %>
+    <% if email_template.errors.any? %>
+      <div class="alert alert-danger">
+        <h4><%= pluralize(email_template.errors.count, "erreur") %> ont empêché la sauvegarde de ce template :</h4>
+        <ul>
+          <% email_template.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div class="mb-3">
+      <%= form.label :name, "Nom du template", class: "form-label" %>
+      <%= form.text_field :name, class: "form-control", placeholder: "Ex: Confirmation de réservation" %>
+      <div class="form-text">Donnez un nom clair à votre template pour le retrouver facilement</div>
+    </div>
+  
+    <div class="mb-3">
+      <%= form.label :category, "Catégorie", class: "form-label" %>
+      <%= form.select :category, EmailTemplate::CATEGORIES.map { |c| [c.capitalize.gsub('_', ' '), c] }, 
+                     { include_blank: "Choisir une catégorie" }, 
+                     { class: "form-select" } %>
+      <div class="form-text">Sélectionnez la catégorie qui correspond à ce type d'email</div>
+    </div>
+  
+    <div class="mb-3">
+      <%= form.label :subject, "Objet de l'email", class: "form-label" %>
+      <%= form.text_field :subject, class: "form-control", placeholder: "Ex: Confirmation de votre réservation du {{event_date}}" %>
+      <div class="form-text">
+        Vous pouvez utiliser des variables comme {{client_name}}, {{event_date}}, {{company_name}}, etc.
+      </div>
+    </div>
+  
+    <div class="mb-3">
+      <%= form.label :content, "Contenu de l'email", class: "form-label" %>
+      <%= form.text_area :content, rows: 10, class: "form-control", 
+                        placeholder: "Bonjour {{client_name}},\n\nNous vous confirmons votre réservation pour l'événement du {{event_date}}.\n\nCordialement,\nVotre équipe" %>
+      <div class="form-text">
+        Utilisez les mêmes variables que dans l'objet. Elles seront remplacées automatiquement.
+      </div>
+    </div>
+  
+    <div class="alert alert-info mb-3">
+      <h5>Variables disponibles :</h5>
+      <ul class="mb-0">
+        <li><strong>{{client_name}}</strong> - Nom du client</li>
+        <li><strong>{{company_name}}</strong> - Nom de l'entreprise</li>
+        <li><strong>{{event_date}}</strong> - Date de l'événement</li>
+        <li><strong>{{offer_title}}</strong> - Titre de l'offre</li>
+        <li><strong>{{amount}}</strong> - Montant</li>
+      </ul>
+    </div>
+  
+    <div class="mb-4">
+      <%= form.submit "Enregistrer le template", class: "btn btn-primary" %>
+      <%= link_to "Annuler", email_templates_path, class: "btn btn-secondary ms-2" %>
+    </div>
+  <% end %>

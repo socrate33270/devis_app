@@ -1,0 +1,89 @@
+{
+    "nom": "Limoges",
+    "region": "Nouvelle-Aquitaine",
+    "description": "Capitale mondiale de la porcelaine et ville d'art et d'histoire",
+    "offres": {
+      "groupes": [
+        {
+          "nom": "Circuit Porcelaine",
+          "description": "Visite de 3 sites emblématiques de la porcelaine de Limoges avec démonstrations",
+          "prix_par_personne": 65,
+          "capacite_min": 10,
+          "capacite_max": 45,
+          "avantages": ["Guide spécialisé", "Transport inclus", "Atelier pratique"]
+        },
+        {
+          "nom": "Limoges City Pass Groupes",
+          "description": "Accès à 5 musées et transports illimités pendant 48h",
+          "prix_par_personne": 39,
+          "capacite_min": 5,
+          "capacite_max": 100,
+          "avantages": ["Coupe-file", "Livret de visite", "Réductions restaurants"]
+        },
+        {
+          "nom": "Découverte du Vieux Limoges",
+          "description": "Visite guidée du quartier historique et des jardins de l'Évêché",
+          "prix_par_personne": 32,
+          "capacite_min": 8,
+          "capacite_max": 60,
+          "avantages": ["Guide conférencier", "Dégustation de spécialités locales", "Livret souvenir"]
+        }
+      ],
+      "affaires": [
+        {
+          "nom": "Séminaire Zenith de Limoges",
+          "description": "Journée de travail dans le centre de congrès avec options de restauration",
+          "prix_par_personne": 220,
+          "capacite_min": 15,
+          "capacite_max": 120,
+          "equipements": ["Salles équipées", "Wifi haut débit", "Vidéoprojecteur"],
+          "services": ["Restauration gastronomique", "Team building culturel", "Transferts depuis la gare"]
+        },
+        {
+          "nom": "Convention d'Affaires Musée des Beaux-Arts",
+          "description": "Espace privatisé dans un cadre exceptionnel pour vos réunions d'entreprise",
+          "prix_par_personne": 150,
+          "capacite_min": 20,
+          "capacite_max": 80,
+          "equipements": ["Espace modulable", "Sonorisation professionnelle", "Support technique"],
+          "services": ["Traiteur sur mesure", "Visite privée nocturne", "Service de conciergerie"]
+        }
+      ]
+    },
+    "hebergements": {
+      "groupes": [
+        {
+          "nom": "Hôtel Mercure Limoges Centre",
+          "description": "Établissement 4 étoiles au cœur de la ville",
+          "prix_par_personne": 95,
+          "capacite_min": 10,
+          "capacite_max": 150
+        },
+        {
+          "nom": "Campanile Limoges Centre",
+          "description": "Hôtel confortable avec restaurant intégré",
+          "prix_par_personne": 65,
+          "capacite_min": 8,
+          "capacite_max": 100
+        }
+      ],
+      "affaires": [
+        {
+          "nom": "Novotel Limoges Le Lac",
+          "description": "Complexe hôtelier avec centre de conférence",
+          "prix_par_personne": 135,
+          "capacite_min": 1,
+          "capacite_max": 200,
+          "services": ["Room service 24h/24", "Business center", "Salle de fitness"]
+        },
+        {
+          "nom": "Best Western Plus Hôtel Richelieu",
+          "description": "Hôtel de charme adapté aux réunions professionnelles",
+          "prix_par_personne": 120,
+          "capacite_min": 5,
+          "capacite_max": 80,
+          "services": ["8 salles de réunion", "Restaurant gastronomique", "Parking privé"]
+        }
+      ]
+    }
+  }

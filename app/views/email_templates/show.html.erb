@@ -1,0 +1,84 @@
+<div class="container mt-4">
+  <div class="mb-4">
+    <%= link_to "← Retour à la liste", email_templates_path, class: "btn btn-outline-secondary" %>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="d-flex justify-content-between align-items-center">
+        <h1 class="h3 mb-0"><%= @email_template.name %></h1>
+        <span class="badge bg-<%= @email_template.category == 'confirmation' ? 'success' : 
+                              @email_template.category == 'relance' ? 'warning' : 
+                              @email_template.category == 'suivi_client' ? 'info' : 'primary' %>">
+          <%= @email_template.category&.capitalize&.gsub('_', ' ') || "Autre" %>
+        </span>
+      </div>
+    </div>
+    <div class="card-body">
+      <h5 class="mb-3">Objet de l'email</h5>
+      <div class="p-3 bg-light rounded mb-4">
+        <%= @email_template.subject %>
+      </div>
+      
+      <h5 class="mb-3">Contenu de l'email</h5>
+      <div class="p-3 bg-light rounded">
+        <%= simple_format @email_template.content %>
+      </div>
+      
+      <div class="alert alert-info mt-4">
+        <h6>Variables disponibles :</h6>
+        <ul class="mb-0">
+          <li><strong>{{client_name}}</strong> - Nom du client</li>
+          <li><strong>{{company_name}}</strong> - Nom de l'entreprise</li>
+          <li><strong>{{event_date}}</strong> - Date de l'événement</li>
+          <li><strong>{{offer_title}}</strong> - Titre de l'offre</li>
+          <li><strong>{{amount}}</strong> - Montant</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="card-footer">
+      <div class="d-flex justify-content-between">
+        <div>
+          <%= link_to "Prévisualiser", preview_email_template_path(@email_template), class: "btn btn-info" %>
+          <button id="copyEmailBtn" class="btn btn-success" onclick="copyEmailToClipboard()">
+            Copier dans le presse-papier
+          </button>
+        </div>
+        <div>
+          <%= link_to "Modifier", edit_email_template_path(@email_template), class: "btn btn-primary me-2" %>
+          <%= button_to "Supprimer", email_template_path(@email_template), 
+                      method: :delete, 
+                      form: { data: { turbo_confirm: "Êtes-vous sûr de vouloir supprimer ce template ?" } }, 
+                      class: "btn btn-danger" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function copyEmailToClipboard() {
+    // Préparer le contenu à copier (objet + contenu)
+    const emailContent = "Objet: <%= j @email_template.subject %>\n\n<%= j @email_template.content %>";
+    
+    // Copier dans le presse-papier
+    navigator.clipboard.writeText(emailContent).then(function() {
+      // Changer temporairement le texte du bouton pour indiquer le succès
+      const button = document.getElementById('copyEmailBtn');
+      const originalText = button.textContent;
+      button.textContent = "✓ Copié !";
+      button.classList.remove('btn-success');
+      button.classList.add('btn-outline-success');
+      
+      // Revenir au texte original après 2 secondes
+      setTimeout(function() {
+        button.textContent = originalText;
+        button.classList.remove('btn-outline-success');
+        button.classList.add('btn-success');
+      }, 2000);
+    }).catch(function(err) {
+      alert("Erreur lors de la copie dans le presse-papier: " + err);
+    });
+  }
+</script>
