@@ -66,4 +66,8 @@ Rails.application.configure do
 
  # Désactive les avertissements et protections spécifiques
  Rails.application.config.hosts << /.*.onrender.com/
+
+ # AJOUT DES HÔTES POUR LE DÉVELOPPEMENT LOCAL
+ Rails.application.config.hosts << "0.0.0.0"
+ Rails.application.config.hosts << "localhost"
 end
